@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-04 Sat 15:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs configuration</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="root" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs configuration</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9433677">1. Installation</a></li>
+<li><a href="#org24ee9e4">2. Package Management</a></li>
+<li><a href="#org130f1ec">3. User Interface</a>
+<ul>
+<li><a href="#orgb2bfa8a">3.1. Theme</a></li>
+</ul>
+</li>
+<li><a href="#org4e6d687">4. Keybindings and Evil Mode</a></li>
+<li><a href="#org9f5687e">5. Completion</a>
+<ul>
+<li><a href="#orga14b40c">5.1. Interactively open dotfiles</a></li>
+</ul>
+</li>
+<li><a href="#org7635878">6. Programming</a>
+<ul>
+<li><a href="#org0f694e0">6.1. Emacs Lisp</a></li>
+<li><a href="#orgc081a3f">6.2. Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org98c2d9b">7. Magit</a></li>
+<li><a href="#orgc998549">8. Org Mode</a>
+<ul>
+<li><a href="#org51f3302">8.1. Babel</a></li>
+</ul>
+</li>
+<li><a href="#org0695624">9. LaTeΧ</a></li>
+<li><a href="#orgcfa1180">10. Projectile</a></li>
+<li><a href="#org080bc55">11. Miscellaneous</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9433677" class="outline-2">
+<h2 id="org9433677"><span class="section-number-2">1</span> Installation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Emacs expects to find user configuration in <code>.config/emacs/init.el</code>.  This <b>literate configuration file</b> must be <b>tangled</b> in order to generate that file and apply the configuration. Once Emacs is installed, this can be done from the command line with the following command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">
+emacs --batch -l org --eval <span class="org-string">'(org-babel-tangle-file "~/.config/emacs/README.org")'</span>
+
+</pre>
+</div>
+
+<p>
+Make sure to also download the fonts <a href="https://github.com/tonsky/FiraCode">Fira Code</a> and <a href="https://edwardtufte.github.io/et-book/">ET Book</a> (known to emacs as <code>ETBembo</code>):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">
+sudo pacman -S ttf-fira-code
+yay -S ttf-et-book
+
+</pre>
+</div>
+
+<p>
+When Emacs is launched for the first time, it will spend some time downloading and installing various packages.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org24ee9e4" class="outline-2">
+<h2 id="org24ee9e4"><span class="section-number-2">2</span> Package Management</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Most of the rest of the configuration depends on Emacs' vast array of extensions. Therefore the first thing that must be configured is the package manager. Emacs' default package manager is simply called <code>package</code>. Even though it is built-in, we still have to do a little work to initialise it!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Where to look for packages to download.</span>
+(<span class="org-keyword">setq</span> package-archives
+      '((<span class="org-string">"melpa"</span>        . <span class="org-string">"https://melpa.org/packages/"</span>)
+        (<span class="org-string">"melpa-stable"</span> . <span class="org-string">"https://stable.melpa.org/packages/"</span>)
+        (<span class="org-string">"org"</span>          . <span class="org-string">"https://orgmode.org/elpa/"</span>)
+        (<span class="org-string">"elpa"</span>         . <span class="org-string">"https://elpa.gnu.org/packages/"</span>)))
+
+(package-initialize)
+(<span class="org-keyword">unless</span> package-archive-contents package-refresh-contents)
+
+</pre>
+</div>
+
+<p>
+Package management can be made much more convenient with <a href="https://github.com/jwiegley/use-package">use-package</a>. We begin by installing it with <code>package</code>, but after this all packages will be installed through <code>use-package</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Install use-package ...</span>
+(<span class="org-keyword">unless</span> (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">... and enable it.</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">use-package</span>)
+
+</pre>
+</div>
+
+<p>
+By default, <code>use-package</code> only loads packages which already exist on the system. The following setting tells it to handle downloading packages as well.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(<span class="org-keyword">setq</span> use-package-always-ensure t)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org130f1ec" class="outline-2">
+<h2 id="org130f1ec"><span class="section-number-2">3</span> User Interface</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(scroll-bar-mode -1)    <span class="org-comment-delimiter">; </span><span class="org-comment">Disable scrollbar.</span>
+(tool-bar-mode -1)      <span class="org-comment-delimiter">; </span><span class="org-comment">Disable toolbar.</span>
+(menu-bar-mode -1)      <span class="org-comment-delimiter">; </span><span class="org-comment">Disable menu bar.</span>
+(tooltip-mode -1)       <span class="org-comment-delimiter">; </span><span class="org-comment">Disable tooltips.</span>
+(set-fringe-mode 10)    <span class="org-comment-delimiter">; </span><span class="org-comment">Add breathing room.</span>
+(column-number-mode)    <span class="org-comment-delimiter">; </span><span class="org-comment">Show column number in modeline.</span>
+(size-indication-mode)  <span class="org-comment-delimiter">; </span><span class="org-comment">Show file size in modeline.</span>
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/display-line-numbers</span> ()
+  <span class="org-doc">"My preferences for line numbers where desired."</span>
+  (<span class="org-keyword">setq-local</span> display-line-numbers 'visual
+              display-line-numbers-current-absolute t))
+
+(add-hook 'prog-mode-hook 'quark/display-line-numbers)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Scrolls way too fast by default.</span>
+(<span class="org-keyword">setq</span> mouse-wheel-scroll-amount '(1 ((control) . 'text-scale))
+      scroll-margin 3
+      scroll-step 1)
+
+(use-package all-the-icons)
+(use-package minions)
+(use-package doom-modeline
+  <span class="org-builtin">:init</span>
+  (doom-modeline-mode)
+  (minions-mode)
+  <span class="org-builtin">:custom</span>
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-minor-modes t))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Pop-up to make keybindings discoverable.</span>
+(use-package which-key
+  <span class="org-builtin">:init</span> (which-key-mode)
+  <span class="org-builtin">:custom</span> (which-key-idle-delay 0.3))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Preview colour codes</span>
+(use-package rainbow-mode
+  <span class="org-builtin">:config</span> (rainbow-mode))
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb2bfa8a" class="outline-3">
+<h3 id="orgb2bfa8a"><span class="section-number-3">3.1</span> Theme</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Enabling <a href="https://github.com/hlissner/emacs-solaire-mode">Solaire mode</a> slightly dims the backgrounds of non-editing buffers. This draws the eye to the editing space and gives the window a more refined look. Themes need to be configured to work with this. The package <a href="https://github.com/hlissner/emacs-doom-themes">doom-themes</a> contains many nice preconfigured themes.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package solaire-mode
+  <span class="org-builtin">:config</span> (solaire-global-mode))
+
+(use-package doom-themes
+  <span class="org-builtin">:config</span> (doom-themes-org-config))
+
+</pre>
+</div>
+
+<p>
+Liked dark themes:
+</p>
+<ul class="org-ul">
+<li><code>doom-vibrant</code> <i>(default Doom Emacs theme, with slightly more contrast).</i></li>
+<li><code>doom-nord</code> <i>(Nord. Rather low contrast).</i></li>
+<li><code>doom-palenight</code> <i>(Used by System Crafters. Elegant and slightly purple).</i></li>
+</ul>
+
+<p>
+Liked light themes:
+</p>
+<ul class="org-ul">
+<li><code>doom-one-light</code> <i>(Default Doom Emacs light theme).</i></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(load-theme 'doom-one-light t)
+
+(set-face-attribute 'default        nil <span class="org-builtin">:font</span> <span class="org-string">"Fira Code Retina"</span> <span class="org-builtin">:height</span> 101)
+(set-face-attribute 'fixed-pitch    nil <span class="org-builtin">:font</span> <span class="org-string">"Fira Code Retina"</span> <span class="org-builtin">:height</span> 101)
+(set-face-attribute 'variable-pitch nil <span class="org-builtin">:font</span> <span class="org-string">"ETBembo"</span>          <span class="org-builtin">:height</span> 120)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e6d687" class="outline-2">
+<h2 id="org4e6d687"><span class="section-number-2">4</span> Keybindings and Evil Mode</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package general
+  <span class="org-builtin">:config</span>
+  (general-evil-setup)
+  (general-create-definer my-leader-def       <span class="org-builtin">:states</span> 'normal <span class="org-builtin">:prefix</span> <span class="org-string">"SPC"</span>)
+  (general-create-definer my-local-leader-def <span class="org-builtin">:states</span> 'normal <span class="org-builtin">:prefix</span> <span class="org-string">"SPC m"</span>)
+  (my-leader-def
+    <span class="org-string">"b"</span> 'counsel-switch-buffer
+    <span class="org-string">"f"</span> '(<span class="org-builtin">:ignore</span> t <span class="org-builtin">:which-key</span> <span class="org-string">"files"</span>)
+    <span class="org-string">"ff"</span> 'find-file))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/load-dotfile</span> ()
+  <span class="org-doc">"Reload emacs configuration."</span>
+  (<span class="org-keyword">interactive</span>)
+  (load-file (expand-file-name <span class="org-string">"~/.config/emacs/init.el"</span>)))
+
+(my-leader-def
+  <span class="org-string">"e"</span> '(<span class="org-builtin">:ignore</span> t <span class="org-builtin">:which-key</span> <span class="org-string">"eval"</span>)
+  <span class="org-string">"eb"</span> 'eval-buffer
+  <span class="org-string">"ed"</span> 'quark/load-dotfile
+  <span class="org-string">"ee"</span> 'eval-last-sexp)
+
+(general-def
+  <span class="org-string">"C-="</span> `text-scale-increase
+  <span class="org-string">"C--"</span> `text-scale-decrease)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Required for C-r (evil-mode undo).</span>
+(use-package undo-tree
+  <span class="org-builtin">:init</span> (global-undo-tree-mode))
+
+(use-package evil
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> evil-move-cursor-back nil
+        evil-want-keybinding nil <span class="org-comment-delimiter">;; </span><span class="org-comment">For evil-collection.</span>
+        evil-want-Y-yank-to-eol 1
+        evil-undo-system 'undo-tree)
+  <span class="org-builtin">:config</span>
+  (evil-mode)
+  (general-def <span class="org-string">"&lt;escape&gt;"</span> 'keyboard-escape-quit) <span class="org-comment-delimiter">; </span><span class="org-comment">Make ESC quit prompts.</span>
+  (general-def evil-insert-state-map <span class="org-string">"C-g"</span> 'evil-normal-state)
+  (general-def 'normal <span class="org-string">"j"</span> 'evil-next-visual-line)
+  (general-def 'normal <span class="org-string">"k"</span> 'evil-previous-visual-line))
+
+(use-package evil-collection
+  <span class="org-builtin">:after</span> evil
+  <span class="org-builtin">:config</span> (evil-collection-init))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Escape insert mode with "jk".</span>
+(general-imap <span class="org-string">"j"</span> (general-key-dispatch 'self-insert-command
+                    <span class="org-builtin">:timeout</span> 0.25
+                    <span class="org-string">"k"</span> 'evil-normal-state))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f5687e" class="outline-2">
+<h2 id="org9f5687e"><span class="section-number-2">5</span> Completion</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package ivy
+  <span class="org-builtin">:bind</span>
+  ((<span class="org-string">"C-s"</span> . swiper)
+   <span class="org-builtin">:map</span> ivy-minibuffer-map
+   (<span class="org-string">"TAB"</span> . ivy-alt-done)
+   (<span class="org-string">"C-l"</span> . ivy-alt-done)
+   (<span class="org-string">"C-j"</span> . ivy-next-line)
+   (<span class="org-string">"C-k"</span> . ivy-previous-line)
+   <span class="org-builtin">:map</span> ivy-switch-buffer-map
+   (<span class="org-string">"C-k"</span> . ivy-previous-line)
+   (<span class="org-string">"C-l"</span> . ivy-done)
+   (<span class="org-string">"C-d"</span> . ivy-switch-buffer-kill)
+   <span class="org-builtin">:map</span> ivy-reverse-i-search-map
+   (<span class="org-string">"C-k"</span> . ivy-previous-line)
+   (<span class="org-string">"C-d"</span> . ivy-reverse-i-search-kill))
+  <span class="org-builtin">:config</span> (ivy-mode))
+
+(use-package ivy-rich
+  <span class="org-builtin">:init</span> (ivy-rich-mode))
+
+(use-package counsel
+  <span class="org-builtin">:config</span> (counsel-mode))
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga14b40c" class="outline-3">
+<h3 id="orga14b40c"><span class="section-number-3">5.1</span> Interactively open dotfiles</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+This command (bound to <code>SPC f d</code>) allows me to search for and open dotfiles.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/ivy-find-file-action</span> (key)
+  <span class="org-doc">"Find dotfile from KEY in quark/dotfile-list."</span>
+  (with-ivy-window (find-file (cdr (assoc key quark/dotfile-list)))))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">A list of dotfiles, each associated with a keyword.</span>
+(<span class="org-keyword">setq</span> quark/dotfile-list
+      '((<span class="org-string">"Dotfiles README"</span> . <span class="org-string">"~/README.md"</span>)
+        (<span class="org-string">"Emacs"</span>           . <span class="org-string">"~/.config/emacs/README.org"</span>)
+        (<span class="org-string">"XMonad"</span>          . <span class="org-string">"~/.config/xmonad/README.md"</span>)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/ivy-open-dotfile</span> ()
+  <span class="org-doc">"Open configuration file for PROGRAM."</span>
+  (<span class="org-keyword">interactive</span>)
+  (ivy-read <span class="org-string">"Open dotfile: "</span> (mapcar 'car quark/dotfile-list)
+            <span class="org-builtin">:action</span> 'quark/ivy-find-file-action))
+
+(my-leader-def <span class="org-string">"fd"</span> 'quark/ivy-open-dotfile)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7635878" class="outline-2">
+<h2 id="org7635878"><span class="section-number-2">6</span> Programming</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">More easily see how parentheses pair up.</span>
+(use-package rainbow-delimiters
+  <span class="org-builtin">:hook</span> (prog-mode . rainbow-delimiters-mode))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically close parentheses.</span>
+(use-package smartparens
+  <span class="org-builtin">:hook</span> (prog-mode . smartparens-mode)
+  <span class="org-builtin">:config</span> (<span class="org-keyword">require</span> '<span class="org-constant">smartparens-config</span>))
+
+(use-package lsp-mode
+  <span class="org-builtin">:commands</span> (lsp lsp-deferred)
+  <span class="org-builtin">:custom</span> (lsp-keymap-prefix <span class="org-string">"C-c l"</span>)
+  <span class="org-builtin">:config</span> (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui)
+
+(use-package company
+  <span class="org-builtin">:hook</span> (lsp-mode . company-mode)
+  <span class="org-builtin">:bind</span>
+  (<span class="org-builtin">:map</span> company-active-map (<span class="org-string">"&lt;tab&gt;"</span> . company-complete-selection))
+  (<span class="org-builtin">:map</span> lsp-mode-map (<span class="org-string">"&lt;tab&gt;"</span> . company-indent-or-complete-common))
+  <span class="org-builtin">:custom</span>
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Make the ui slightly nicer (I'm not entirely sure if it's worth it).</span>
+(use-package company-box
+  <span class="org-builtin">:hook</span> (company-mode-hook . company-box-mode))
+
+(use-package evil-nerd-commenter
+  <span class="org-builtin">:bind</span> (<span class="org-string">"M-/"</span> . evilnc-comment-or-uncomment-lines))
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0f694e0" class="outline-3">
+<h3 id="org0f694e0"><span class="section-number-3">6.1</span> Emacs Lisp</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Be strict about parentheses.</span>
+(add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)
+(use-package evil-cleverparens
+  <span class="org-builtin">:hook</span> (emacs-lisp-mode . evil-cleverparens-mode))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc081a3f" class="outline-3">
+<h3 id="orgc081a3f"><span class="section-number-3">6.2</span> Haskell</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, make sure to install <code>haskell-language-server-bin</code> from the Arch User Repository instead of <code>haskell-language-server</code> from the official repositories. The Arch official repositories use dynamic linking for Haskell packages, which leads to many messy dependency problems when installing or upgrading any Haskell package.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package lsp-haskell
+  <span class="org-builtin">:hook</span> (haskell-mode . lsp-deferred))
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98c2d9b" class="outline-2">
+<h2 id="org98c2d9b"><span class="section-number-2">7</span> Magit</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package magit)
+(use-package git-gutter
+  <span class="org-builtin">:init</span> (global-git-gutter-mode))
+
+</pre>
+</div>
+
+<p>
+I backup all my <a href="https://github.com/quarkQuark/dotfiles">dotfiles</a> using a git bare repository. It is difficult for Emacs to tell automatically whether I want to use magit on my dotfiles repository or some other repository, as they can overlap. Following <a href="https://emacs.stackexchange.com/questions/30602/use-nonstandard-git-directory-with-magit">this Stackexchange answer</a>, I set up alternative commands to launch Magit explicitly with the correct settings.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Add args when used for dotfiles or remove args otherwise.</span>
+(<span class="org-keyword">setq</span> dotfiles-git-dir (concat <span class="org-string">"--git-dir="</span> (expand-file-name <span class="org-string">"~/.dotfiles-git"</span>)))
+(<span class="org-keyword">setq</span> dotfiles-work-tree (concat <span class="org-string">"--work-tree="</span> (expand-file-name <span class="org-string">"~"</span>)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/dotfiles-magit-status</span> ()
+  <span class="org-doc">"Open magit to manage my dotfiles git bare repository."</span>
+  (<span class="org-keyword">interactive</span>)
+  (add-to-list 'magit-git-global-arguments dotfiles-git-dir)
+  (add-to-list 'magit-git-global-arguments dotfiles-work-tree)
+  (call-interactively 'magit-status))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/magit-status</span> ()
+  <span class="org-doc">"Replacement for `</span><span class="org-doc"><span class="org-constant">magit-status</span></span><span class="org-doc">' for compatibility with quark/dotfiles-magit-status."</span>
+  (<span class="org-keyword">interactive</span>)
+  (<span class="org-keyword">setq</span> magit-git-global-arguments (remove dotfiles-git-dir magit-git-global-arguments))
+  (<span class="org-keyword">setq</span> magit-git-global-arguments (remove dotfiles-work-tree magit-git-global-arguments))
+  (call-interactively 'magit-status))
+
+(general-def <span class="org-string">"C-x g"</span> 'quark/magit-status)
+(general-def magit-file-mode-map <span class="org-string">"C-x g"</span> 'quark/magit-status)
+
+(my-leader-def
+  <span class="org-string">"g"</span> '(<span class="org-builtin">:ignore</span> t <span class="org-builtin">:which-key</span> <span class="org-string">"git"</span>)
+  <span class="org-string">"gd"</span> '(quark/dotfiles-magit-status <span class="org-builtin">:which-key</span> <span class="org-string">"dotfiles-magit-status"</span>)
+  <span class="org-string">"gg"</span> '(quark/magit-status          <span class="org-builtin">:which-key</span> <span class="org-string">"magit-status"</span>))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc998549" class="outline-2">
+<h2 id="orgc998549"><span class="section-number-2">8</span> Org Mode</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<a href="https://zzamboni.org/post/beautifying-org-mode-in-emacs/">https://zzamboni.org/post/beautifying-org-mode-in-emacs/</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/org-mode-setup</span> ()
+  <span class="org-doc">"Function to run on `</span><span class="org-doc"><span class="org-constant">org-mode</span></span><span class="org-doc">' startup."</span>
+  (variable-pitch-mode)
+  (visual-line-mode)
+  (quark/org-font-setup)
+  (<span class="org-keyword">setq</span> evil-auto-indent nil))
+
+(use-package org
+  <span class="org-builtin">:hook</span> (org-mode . quark/org-mode-setup)
+  <span class="org-builtin">:custom</span>
+  (org-ellipsis <span class="org-string">" &#9662;"</span>)
+  (org-hide-emphasis-markers t)
+  (org-startup-indented t)
+  (org-startup-with-latex-preview t)
+  (org-format-latex-options '(plist-put org-format-latex-options <span class="org-builtin">:scale</span> 1.2)))
+
+(use-package org-superstar
+  <span class="org-builtin">:after</span> org
+  <span class="org-builtin">:hook</span> (org-mode . org-superstar-mode)
+  <span class="org-builtin">:custom</span>
+  (org-superstar-headline-bullets-list '(<span class="org-string">"&#9673;"</span> <span class="org-string">"&#9675;"</span> <span class="org-string">"&#9679;"</span> <span class="org-string">"&#9658;"</span> <span class="org-string">"&#9671;"</span>)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Unhide emphasis markers under cursor.</span>
+(use-package org-appear
+  <span class="org-builtin">:hook</span> (org-mode . org-appear-mode))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically toggle latex preview under cursor</span>
+(use-package org-fragtog
+  <span class="org-builtin">:hook</span> (org-mode . org-fragtog-mode))
+
+(use-package cdlatex
+  <span class="org-builtin">:hook</span> (org-mode . org-cdlatex-mode))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/org-font-setup</span> ()
+  <span class="org-doc">"Set up my font preferences for `</span><span class="org-doc"><span class="org-constant">org-mode</span></span><span class="org-doc">'."</span>
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Prettify list bullets.</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Seems to work only sometimes?</span>
+  (font-lock-add-keywords
+   'org-mode
+   '((<span class="org-string">"^ *</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(</span></span><span class="org-string">[-]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string"> "</span>
+      (0 (<span class="org-keyword">prog1</span> () (compose-region (match-beginning 1) (match-end 1) <span class="org-string">"&#8226;"</span>))))))
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Set heading font sizes.</span>
+  (set-face-attribute 'org-document-title nil <span class="org-builtin">:font</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:weight</span> 'bold <span class="org-builtin">:height</span> 2.0)
+  (<span class="org-keyword">dolist</span> (face '((org-level-1 . 1.75)
+                  (org-level-2 . 1.5)
+                  (org-level-3 . 1.25)
+                  (org-level-4 . 1.1)
+                  (org-level-5 . 1.0)
+                  (org-level-6 . 1.0)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (set-face-attribute (car face) nil <span class="org-builtin">:font</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:weight</span> 'medium <span class="org-builtin">:height</span> (cdr face)))
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Display certain regions in a fixed-pitch font.</span>
+  (set-face-attribute 'org-block nil           <span class="org-builtin">:foreground</span> nil <span class="org-builtin">:inherit</span> 'fixed-pitch)
+  (set-face-attribute 'org-checkbox nil        <span class="org-builtin">:inherit</span> 'fixed-pitch)
+  (set-face-attribute 'org-code nil            <span class="org-builtin">:inherit</span> '(shadow fixed-pitch))
+  (set-face-attribute 'org-indent nil          <span class="org-builtin">:inherit</span> '(org-hide fixed-pitch))
+  (set-face-attribute 'org-formula nil         <span class="org-builtin">:inherit</span> 'fixed-pitch)
+  (set-face-attribute 'org-meta-line nil       <span class="org-builtin">:inherit</span> '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil <span class="org-builtin">:inherit</span> '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-table nil           <span class="org-builtin">:inherit</span> '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil        <span class="org-builtin">:inherit</span> '(shadow fixed-pitch)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">quark/org-mode-visual-fill</span> ()
+  <span class="org-doc">"Configure `</span><span class="org-doc"><span class="org-constant">visual-fill-column-mode</span></span><span class="org-doc">' for `</span><span class="org-doc"><span class="org-constant">org-mode</span></span><span class="org-doc">'."</span>
+  (<span class="org-keyword">setq</span> visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode))
+
+(use-package visual-fill-column
+  <span class="org-builtin">:hook</span> (org-mode . quark/org-mode-visual-fill))
+
+(<span class="org-keyword">with-eval-after-load</span> 'ox-latex
+  (<span class="org-keyword">setq</span> org-latex-compiler <span class="org-string">"lualatex"</span>)
+  (<span class="org-keyword">setq</span> org-latex-pdf-process '(<span class="org-string">"latexmk -%latex -pvc -view=none %f"</span>))
+  (add-to-list 'org-latex-classes
+               '(<span class="org-string">"my-notes"</span>
+                 <span class="org-string">"\\documentclass{my-notes}"</span>
+                 <span class="org-comment-delimiter">;; </span><span class="org-comment">Commands for each heading type (further subheadings become lists).</span>
+                 (<span class="org-string">"\\section{%s}"</span> . <span class="org-string">"\\section*{%s}"</span>)
+                 (<span class="org-string">"\\subsection{%s}"</span> . <span class="org-string">"\\subsection*{%s}"</span>)
+                 (<span class="org-string">"\\subsubsection{%s}"</span> . <span class="org-string">"\\subsubsection*{%s}"</span>)))
+  (add-to-list 'org-latex-classes
+               '(<span class="org-string">"uonmathreport-colour"</span>
+                 <span class="org-string">"\\documentclass{uonmathreport-colour}"</span>
+                 <span class="org-comment-delimiter">;; </span><span class="org-comment">Commands for each heading type (further subheadings become lists).</span>
+                 (<span class="org-string">"\\section{%s}"</span> . <span class="org-string">"\\section*{%s}"</span>)
+                 (<span class="org-string">"\\subsection{%s}"</span> . <span class="org-string">"\\subsection*{%s}"</span>)
+                 (<span class="org-string">"\\subsubsection{%s}"</span> . <span class="org-string">"\\subsubsection*{%s}"</span>)))
+  (<span class="org-keyword">setq</span> org-latex-default-class <span class="org-string">"my-notes"</span>))
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org51f3302" class="outline-3">
+<h3 id="org51f3302"><span class="section-number-3">8.1</span> Babel</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">List of languages org-babel can evaluate.</span>
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (python . t)))
+
+(<span class="org-keyword">setq</span> org-confirm-babel-evaluate nil)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Enable structure templates.</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">org-tempo</span>)
+
+(<span class="org-keyword">dolist</span> (template
+         '((<span class="org-string">"el"</span> . <span class="org-string">"src emacs-lisp"</span>)
+           (<span class="org-string">"sh"</span> . <span class="org-string">"src shell"</span>)
+           (<span class="org-string">"py"</span> . <span class="org-string">"src python"</span>)
+           (<span class="org-string">"hs"</span> . <span class="org-string">"src haskell"</span>)
+           (<span class="org-string">"def"</span> . <span class="org-string">"definition"</span>)
+           (<span class="org-string">"rem"</span> . <span class="org-string">"remark"</span>)
+           (<span class="org-string">"lem"</span> . <span class="org-string">"lemma"</span>)
+           (<span class="org-string">"thm"</span> . <span class="org-string">"theorem"</span>)
+           (<span class="org-string">"cor"</span> . <span class="org-string">"corollary"</span>)
+           (<span class="org-string">"prf"</span> . <span class="org-string">"proof"</span>)))
+  (add-to-list 'org-structure-template-alist template))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Recognise extra languages</span>
+(<span class="org-keyword">push</span> '(<span class="org-string">"conf-unix"</span> . conf-unix) org-src-lang-modes)
+(<span class="org-keyword">push</span> '(<span class="org-string">"latex"</span> . latex) org-src-lang-modes)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0695624" class="outline-2">
+<h2 id="org0695624"><span class="section-number-2">9</span> LaTeΧ</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package tex
+  <span class="org-builtin">:ensure</span> auctex)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Mostly just to enable system fonts.</span>
+(<span class="org-keyword">setq</span> TeX-engine <span class="org-string">"lualatex"</span>)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcfa1180" class="outline-2">
+<h2 id="orgcfa1180"><span class="section-number-2">10</span> Projectile</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package projectile
+  <span class="org-builtin">:pin</span> melpa-stable
+  <span class="org-builtin">:init</span> (projectile-mode)
+  <span class="org-builtin">:bind-keymap</span> (<span class="org-string">"C-c p"</span> . projectile-command-map))
+
+(use-package counsel-projectile
+  <span class="org-builtin">:after</span> projectile
+  <span class="org-builtin">:init</span> (counsel-projectile-mode))
+
+(my-leader-def
+  <span class="org-string">"SPC"</span> 'projectile-find-file
+  <span class="org-string">"p"</span> '(<span class="org-builtin">:ignore</span> t <span class="org-builtin">:which-key</span> <span class="org-string">"projects"</span>)
+  <span class="org-string">"pp"</span> 'projectile-switch-project)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org080bc55" class="outline-2">
+<h2 id="org080bc55"><span class="section-number-2">11</span> Miscellaneous</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span class="org-comment-delimiter">;; </span><span class="org-comment">More helpful help pages.</span>
+(use-package helpful
+  <span class="org-builtin">:custom</span>
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  <span class="org-builtin">:bind</span>
+  ([remap describe-comand] . helpful-command)
+  ([remap describe-key] . helpful-key))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Manage .pacnew and .pacsave files on Arch Linux.</span>
+(use-package pacfiles-mode)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: root</p>
+<p class="date">Created: 2021-09-04 Sat 15:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

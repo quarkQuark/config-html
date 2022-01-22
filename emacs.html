@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-22 Sat 18:01 -->
+<!-- 2022-01-22 Sat 18:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs configuration</title>
@@ -253,48 +253,48 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ae5874">1. Installation</a></li>
-<li><a href="#orgf05b31c">2. Package Management</a></li>
-<li><a href="#org7f354b0">3. User Interface</a>
+<li><a href="#org1b91290">1. Installation</a></li>
+<li><a href="#org5646cb4">2. Package Management</a></li>
+<li><a href="#org6de887e">3. User Interface</a>
 <ul>
-<li><a href="#org03bc778">3.1. Theme</a></li>
+<li><a href="#org53e2e07">3.1. Theme</a></li>
 </ul>
 </li>
-<li><a href="#orgd7609cd">4. Keybindings and Evil Mode</a></li>
-<li><a href="#org15f696b">5. Ivy (completion)</a>
+<li><a href="#org8eb8aa9">4. Keybindings and Evil Mode</a></li>
+<li><a href="#orgb57e4c7">5. Ivy (completion)</a>
 <ul>
-<li><a href="#org49f220a">5.1. Interactively open dotfiles</a></li>
+<li><a href="#org596a71e">5.1. Interactively open dotfiles</a></li>
 </ul>
 </li>
-<li><a href="#org7cc2544">6. Programming</a>
+<li><a href="#orgb16c8f5">6. Programming</a>
 <ul>
-<li><a href="#org7207279">6.1. Emacs Lisp</a></li>
-<li><a href="#orga1d1f8d">6.2. Haskell</a></li>
+<li><a href="#orgef242c1">6.1. Emacs Lisp</a></li>
+<li><a href="#org1552dca">6.2. Haskell</a></li>
 </ul>
 </li>
-<li><a href="#orgba628e2">7. Writing</a>
+<li><a href="#org9302ea4">7. Writing</a>
 <ul>
-<li><a href="#org5196ff1">7.1. Org Mode</a>
+<li><a href="#orgaa7bf3c">7.1. Org Mode</a>
 <ul>
-<li><a href="#org08d3905">7.1.1. Setup</a></li>
-<li><a href="#orgd561f02">7.1.2. Aesthetics</a></li>
-<li><a href="#orge09304c">7.1.3. Specify font face for certain special blocks</a></li>
-<li><a href="#org364248f">7.1.4. Maths and LaTeX fragments</a></li>
-<li><a href="#org49b5b17">7.1.5. Export</a></li>
-<li><a href="#orgc176785">7.1.6. Babel</a></li>
+<li><a href="#org177ea13">7.1.1. Setup</a></li>
+<li><a href="#org1a4b0e6">7.1.2. Aesthetics</a></li>
+<li><a href="#org5d743e5">7.1.3. Specify font face for certain special blocks</a></li>
+<li><a href="#org621503f">7.1.4. Maths and LaTeX fragments</a></li>
+<li><a href="#org8560b3d">7.1.5. Export</a></li>
+<li><a href="#org722b41a">7.1.6. Babel</a></li>
 </ul>
 </li>
-<li><a href="#org8c07a4c">7.2. LaTeΧ</a></li>
+<li><a href="#orga9761b3">7.2. LaTeΧ</a></li>
 </ul>
 </li>
-<li><a href="#org07edc05">8. Magit</a></li>
-<li><a href="#orga2c19d6">9. File management</a>
+<li><a href="#orgd29c295">8. Magit</a></li>
+<li><a href="#orga479c48">9. File management</a>
 <ul>
-<li><a href="#org9c60a6a">9.1. Dired</a></li>
+<li><a href="#orgef28bcb">9.1. Dired</a></li>
 </ul>
 </li>
-<li><a href="#orgcaa9d74">10. Projectile</a></li>
-<li><a href="#orgd5b1828">11. Miscellaneous</a></li>
+<li><a href="#org3ed23ae">10. Projectile</a></li>
+<li><a href="#org512d8ca">11. Miscellaneous</a></li>
 </ul>
 </div>
 </div>
@@ -302,8 +302,8 @@ for the JavaScript code in this tag.
 The best place to read this file is at <a href="https://quarkquark.github.io/literate-config/emacs">https://quarkquark.github.io/literate-config/emacs</a>. The org-mode source is stored at <a href="https://github.com/quarkQuark/dotfiles/tree/master/.config/emacs">https://github.com/quarkQuark/dotfiles/tree/master/.config/emacs</a>.
 </p>
 
-<div id="outline-container-org9ae5874" class="outline-2">
-<h2 id="org9ae5874"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-org1b91290" class="outline-2">
+<h2 id="org1b91290"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Emacs expects to find user configuration in <code>.config/emacs/init.el</code>.  This <b>literate configuration file</b> must be <b>tangled</b> in order to generate that file and apply the configuration. Once Emacs is installed, this can be done from the command line with the following command:
@@ -334,8 +334,8 @@ When Emacs is launched for the first time, it will spend some time downloading a
 </div>
 </div>
 
-<div id="outline-container-orgf05b31c" class="outline-2">
-<h2 id="orgf05b31c"><span class="section-number-2">2</span> Package Management</h2>
+<div id="outline-container-org5646cb4" class="outline-2">
+<h2 id="org5646cb4"><span class="section-number-2">2</span> Package Management</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Most of the rest of the configuration depends on Emacs' vast array of extensions. Therefore the first thing that must be configured is the package manager. Emacs' default package manager is simply called <code>package</code>. Even though it is built-in, we still have to do a little work to initialise it!
@@ -385,8 +385,8 @@ By default, <code>use-package</code> only loads packages which already exist on 
 </div>
 </div>
 
-<div id="outline-container-org7f354b0" class="outline-2">
-<h2 id="org7f354b0"><span class="section-number-2">3</span> User Interface</h2>
+<div id="outline-container-org6de887e" class="outline-2">
+<h2 id="org6de887e"><span class="section-number-2">3</span> User Interface</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -429,8 +429,8 @@ By default, <code>use-package</code> only loads packages which already exist on 
 </div>
 </div>
 
-<div id="outline-container-org03bc778" class="outline-3">
-<h3 id="org03bc778"><span class="section-number-3">3.1</span> Theme</h3>
+<div id="outline-container-org53e2e07" class="outline-3">
+<h3 id="org53e2e07"><span class="section-number-3">3.1</span> Theme</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Enabling <a href="https://github.com/hlissner/emacs-solaire-mode">Solaire mode</a> slightly dims the backgrounds of non-editing buffers. This draws the eye to the editing space and gives the window a more refined look. Themes need to be configured to work with this. The package <a href="https://github.com/hlissner/emacs-doom-themes">doom-themes</a> contains many nice preconfigured themes.
@@ -477,8 +477,8 @@ Liked light themes:
 </div>
 </div>
 
-<div id="outline-container-orgd7609cd" class="outline-2">
-<h2 id="orgd7609cd"><span class="section-number-2">4</span> Keybindings and Evil Mode</h2>
+<div id="outline-container-org8eb8aa9" class="outline-2">
+<h2 id="org8eb8aa9"><span class="section-number-2">4</span> Keybindings and Evil Mode</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -538,8 +538,8 @@ Liked light themes:
 </div>
 </div>
 
-<div id="outline-container-org15f696b" class="outline-2">
-<h2 id="org15f696b"><span class="section-number-2">5</span> Ivy (completion)</h2>
+<div id="outline-container-orgb57e4c7" class="outline-2">
+<h2 id="orgb57e4c7"><span class="section-number-2">5</span> Ivy (completion)</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -570,8 +570,8 @@ Liked light themes:
 </div>
 </div>
 
-<div id="outline-container-org49f220a" class="outline-3">
-<h3 id="org49f220a"><span class="section-number-3">5.1</span> Interactively open dotfiles</h3>
+<div id="outline-container-org596a71e" class="outline-3">
+<h3 id="org596a71e"><span class="section-number-3">5.1</span> Interactively open dotfiles</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 This command (bound to <code>SPC f d</code>) allows me to search for and open dotfiles.
@@ -603,8 +603,8 @@ This command (bound to <code>SPC f d</code>) allows me to search for and open do
 </div>
 </div>
 
-<div id="outline-container-org7cc2544" class="outline-2">
-<h2 id="org7cc2544"><span class="section-number-2">6</span> Programming</h2>
+<div id="outline-container-orgb16c8f5" class="outline-2">
+<h2 id="orgb16c8f5"><span class="section-number-2">6</span> Programming</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -669,8 +669,8 @@ This command (bound to <code>SPC f d</code>) allows me to search for and open do
 </div>
 </div>
 
-<div id="outline-container-org7207279" class="outline-3">
-<h3 id="org7207279"><span class="section-number-3">6.1</span> Emacs Lisp</h3>
+<div id="outline-container-orgef242c1" class="outline-3">
+<h3 id="orgef242c1"><span class="section-number-3">6.1</span> Emacs Lisp</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -684,8 +684,8 @@ This command (bound to <code>SPC f d</code>) allows me to search for and open do
 </div>
 </div>
 
-<div id="outline-container-orga1d1f8d" class="outline-3">
-<h3 id="orga1d1f8d"><span class="section-number-3">6.2</span> Haskell</h3>
+<div id="outline-container-org1552dca" class="outline-3">
+<h3 id="org1552dca"><span class="section-number-3">6.2</span> Haskell</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, make sure to install <code>haskell-language-server-bin</code> from the Arch User Repository instead of <code>haskell-language-server</code> from the official repositories. The Arch official repositories use dynamic linking for Haskell packages, which leads to many messy dependency problems when installing or upgrading any Haskell package.
@@ -702,8 +702,8 @@ Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, m
 </div>
 </div>
 
-<div id="outline-container-orgba628e2" class="outline-2">
-<h2 id="orgba628e2"><span class="section-number-2">7</span> Writing</h2>
+<div id="outline-container-org9302ea4" class="outline-2">
+<h2 id="org9302ea4"><span class="section-number-2">7</span> Writing</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -728,20 +728,20 @@ Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, m
 </div>
 </div>
 
-<div id="outline-container-org5196ff1" class="outline-3">
-<h3 id="org5196ff1"><span class="section-number-3">7.1</span> Org Mode</h3>
+<div id="outline-container-orgaa7bf3c" class="outline-3">
+<h3 id="orgaa7bf3c"><span class="section-number-3">7.1</span> Org Mode</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 <a href="https://zzamboni.org/post/beautifying-org-mode-in-emacs/">https://zzamboni.org/post/beautifying-org-mode-in-emacs/</a>
 </p>
 </div>
 
-<div id="outline-container-org08d3905" class="outline-4">
-<h4 id="org08d3905"><span class="section-number-4">7.1.1</span> Setup</h4>
+<div id="outline-container-org177ea13" class="outline-4">
+<h4 id="org177ea13"><span class="section-number-4">7.1.1</span> Setup</h4>
 <div class="outline-text-4" id="text-7-1-1">
 </div>
 <ol class="org-ol">
-<li><a id="orge99447a"></a>Font setup<br />
+<li><a id="org08d9030"></a>Font setup<br />
 <div class="outline-text-5" id="text-7-1-1-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -784,7 +784,7 @@ Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, m
 </div>
 </li>
 
-<li><a id="org38221c3"></a>Load org-mode<br />
+<li><a id="org6398299"></a>Load org-mode<br />
 <div class="outline-text-5" id="text-7-1-1-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -816,8 +816,8 @@ Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, m
 </ol>
 </div>
 
-<div id="outline-container-orgd561f02" class="outline-4">
-<h4 id="orgd561f02"><span class="section-number-4">7.1.2</span> Aesthetics</h4>
+<div id="outline-container-org1a4b0e6" class="outline-4">
+<h4 id="org1a4b0e6"><span class="section-number-4">7.1.2</span> Aesthetics</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -858,8 +858,8 @@ Lsp-mode requires <code>haskell-language-server</code>. If running Arch Linux, m
 </div>
 </div>
 
-<div id="outline-container-orge09304c" class="outline-4">
-<h4 id="orge09304c"><span class="section-number-4">7.1.3</span> Specify font face for certain special blocks</h4>
+<div id="outline-container-org5d743e5" class="outline-4">
+<h4 id="org5d743e5"><span class="section-number-4">7.1.3</span> Specify font face for certain special blocks</h4>
 <div class="outline-text-4" id="text-7-1-3">
 <p>
 Org-mode does not expose an option for font-locking of individual special blocks, so we modify the package's source code with <a href="https://github.com/raxod502/el-patch">el-patch</a>.
@@ -1078,8 +1078,8 @@ The following source block contains a copy of the (quite long!) full definition 
 </div>
 </div>
 
-<div id="outline-container-org364248f" class="outline-4">
-<h4 id="org364248f"><span class="section-number-4">7.1.4</span> Maths and LaTeX fragments</h4>
+<div id="outline-container-org621503f" class="outline-4">
+<h4 id="org621503f"><span class="section-number-4">7.1.4</span> Maths and LaTeX fragments</h4>
 <div class="outline-text-4" id="text-7-1-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1095,12 +1095,12 @@ The following source block contains a copy of the (quite long!) full definition 
 </div>
 </div>
 
-<div id="outline-container-org49b5b17" class="outline-4">
-<h4 id="org49b5b17"><span class="section-number-4">7.1.5</span> Export</h4>
+<div id="outline-container-org8560b3d" class="outline-4">
+<h4 id="org8560b3d"><span class="section-number-4">7.1.5</span> Export</h4>
 <div class="outline-text-4" id="text-7-1-5">
 </div>
 <ol class="org-ol">
-<li><a id="org889afed"></a>LaTeX<br />
+<li><a id="org2abc26e"></a>LaTeX<br />
 <div class="outline-text-5" id="text-7-1-5-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1140,8 +1140,8 @@ The following source block contains a copy of the (quite long!) full definition 
 </ol>
 </div>
 
-<div id="outline-container-orgc176785" class="outline-4">
-<h4 id="orgc176785"><span class="section-number-4">7.1.6</span> Babel</h4>
+<div id="outline-container-org722b41a" class="outline-4">
+<h4 id="org722b41a"><span class="section-number-4">7.1.6</span> Babel</h4>
 <div class="outline-text-4" id="text-7-1-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1182,8 +1182,8 @@ The following source block contains a copy of the (quite long!) full definition 
 </div>
 </div>
 
-<div id="outline-container-org8c07a4c" class="outline-3">
-<h3 id="org8c07a4c"><span class="section-number-3">7.2</span> LaTeΧ</h3>
+<div id="outline-container-orga9761b3" class="outline-3">
+<h3 id="orga9761b3"><span class="section-number-3">7.2</span> LaTeΧ</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1199,8 +1199,8 @@ The following source block contains a copy of the (quite long!) full definition 
 </div>
 </div>
 
-<div id="outline-container-org07edc05" class="outline-2">
-<h2 id="org07edc05"><span class="section-number-2">8</span> Magit</h2>
+<div id="outline-container-orgd29c295" class="outline-2">
+<h2 id="orgd29c295"><span class="section-number-2">8</span> Magit</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1248,12 +1248,12 @@ I backup all my <a href="https://github.com/quarkQuark/dotfiles">dotfiles</a> us
 </div>
 </div>
 
-<div id="outline-container-orga2c19d6" class="outline-2">
-<h2 id="orga2c19d6"><span class="section-number-2">9</span> File management</h2>
+<div id="outline-container-orga479c48" class="outline-2">
+<h2 id="orga479c48"><span class="section-number-2">9</span> File management</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org9c60a6a" class="outline-3">
-<h3 id="org9c60a6a"><span class="section-number-3">9.1</span> Dired</h3>
+<div id="outline-container-orgef28bcb" class="outline-3">
+<h3 id="orgef28bcb"><span class="section-number-3">9.1</span> Dired</h3>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1292,8 +1292,8 @@ I backup all my <a href="https://github.com/quarkQuark/dotfiles">dotfiles</a> us
 </div>
 </div>
 
-<div id="outline-container-orgcaa9d74" class="outline-2">
-<h2 id="orgcaa9d74"><span class="section-number-2">10</span> Projectile</h2>
+<div id="outline-container-org3ed23ae" class="outline-2">
+<h2 id="org3ed23ae"><span class="section-number-2">10</span> Projectile</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1316,8 +1316,8 @@ I backup all my <a href="https://github.com/quarkQuark/dotfiles">dotfiles</a> us
 </div>
 </div>
 
-<div id="outline-container-orgd5b1828" class="outline-2">
-<h2 id="orgd5b1828"><span class="section-number-2">11</span> Miscellaneous</h2>
+<div id="outline-container-org512d8ca" class="outline-2">
+<h2 id="org512d8ca"><span class="section-number-2">11</span> Miscellaneous</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1340,7 +1340,7 @@ I backup all my <a href="https://github.com/quarkQuark/dotfiles">dotfiles</a> us
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: quarkQuark</p>
-<p class="date">Created: 2022-01-22 Sat 18:01</p>
+<p class="date">Created: 2022-01-22 Sat 18:15</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
